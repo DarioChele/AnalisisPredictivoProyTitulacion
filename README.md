@@ -128,4 +128,32 @@ pip install pyshark
 ```
 Con pyshark, puedes capturar tráfico de red en tiempo real y procesarlo automáticamente para enviarlo a la API para su evaluación, este enfoque es útil para realizar pruebas en escenarios controlados o simulados de tráfico de red, lo que permite verificar la capacidad de la API para detectar latencias anómalas en entornos dinámicos.
 
+## Redirección de Tráfico de Red hacia la API
+El archivo '04 - Captura_trafico.py' contiene el script que permite capturar tráfico de red desde una interfaz específica, procesar los datos y enviarlos a la API para su análisis. A continuación, se describe cada uno de los datos requeridos:
+* RTT (ms): Tiempo de ida y vuelta del paquete.
+* 	Tamaño del Paquete (bytes): Peso en bytes del paquete capturado.
+* Conexiones Simultáneas: Número de conexiones activas en el momento de la captura.
+* Uso del Ancho de Banda (%): Porcentaje del ancho de banda ocupado.
+* Retransmisiones: Número de retransmisiones registradas debido a errores en la transmisión.
+## Ejecución del Script
+1. 	Asegurarse de que la API esté corriendo: Ejecutar el prototipo de la API con el siguiente comando:
+```bash
+python src/"03 - Prototipo.py"
+```
+2. 	Ejecutar el Script de Captura: Navegar a la carpeta del proyecto y ejecutar:
+```bash
+python src/captura_trafico.py
+```
+ 
+## Verificación del Funcionamiento
+El script capturará los paquetes de red y enviará los datos a la API. Si la API está configurada correctamente, responderá con "Tráfico normal" o "Anomalía detectada" según el análisis realizado sobre los datos recibidos.
+ 
+## Posibles Errores y Soluciones
+1. Permisos Insuficientes:
+Ejecutar PowerShell o CMD como Administrador si se presentan problemas de acceso a la interfaz de red.
+2. Interfaz de Red Incorrecta:
+Ejecutar tshark -D para listar las interfaces disponibles y asegurarse de que se está utilizando la correcta en el script.
+3. Error de Conexión con la API:
+Verificar que la API esté activa en http://localhost:5000.
+
 
